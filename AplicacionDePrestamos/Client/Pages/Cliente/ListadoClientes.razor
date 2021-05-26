@@ -1,0 +1,22 @@
+﻿@page "/listadoclientes" 
+<h3>ListadoClientes</h3>
+
+@foreach (var item in clientes)
+{
+    <TarjetaCliente cliente="item"></TarjetaCliente>
+}
+
+
+@code {
+
+    public List<Cliente> clientes = new List<Cliente>
+{
+        new Cliente(){Id = 1 , Nombre="Sebastian", Celular="3103850315", Direccion= "Calle 20 # 30-58", Foto=""},
+        new Cliente(){Id = 1 , Nombre="Sebastian", Celular="3103850315", Direccion= "Calle 20 # 30-58", Foto=""},
+        new Cliente(){Id = 1 , Nombre="Sebastian", Celular="3103850315", Direccion= "Calle 20 # 30-58", Foto=""}
+
+    };
+
+
+}
+
