@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace AplicacionDePrestamos.Shared.Entidates
 {
     public class Cliente
-    {
+    {   [Key]
         public int Id { get; set; }
 
         [Display(Name = "Nombre de cliente")]

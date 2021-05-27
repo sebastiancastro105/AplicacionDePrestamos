@@ -1,21 +1,41 @@
-﻿@page "/listadoclientes" 
+﻿@page "/"
+
+@inject IRepositorio repositorio
+
 <h3>ListadoClientes</h3>
 
-@foreach (var item in clientes)
+<a href="cliente/crearcliente">Crear cliente</a>
+
+@if (Clientes.Count == 0)
 {
-    <TarjetaCliente cliente="item"></TarjetaCliente>
+    <p>No hay peliculas para mostrar</p>
+}
+else if (Clientes == null)
+{
+    <p>No hay peliculas para mostrar</p>
+}
+else
+{
+    @foreach (var item in Clientes)
+    {
+
+        <TarjetaCliente cliente="item"></TarjetaCliente>
+
+    }
 }
 
 
+
 @code {
+    public List<Cliente> Clientes = new List<Cliente>();
 
-    public List<Cliente> clientes = new List<Cliente>
-{
-        new Cliente(){Id = 1 , Nombre="Sebastian", Celular="3103850315", Direccion= "Calle 20 # 30-58", Foto=""},
-        new Cliente(){Id = 1 , Nombre="Sebastian", Celular="3103850315", Direccion= "Calle 20 # 30-58", Foto=""},
-        new Cliente(){Id = 1 , Nombre="Sebastian", Celular="3103850315", Direccion= "Calle 20 # 30-58", Foto=""}
+    protected async override Task OnInitializedAsync()
+    {
+        var httpResponse = await repositorio.Get<List<Cliente>>("api/clientes");
+        Clientes = httpResponse.Response;
+    }
 
-    };
+
 
 
 }
