@@ -1,0 +1,19 @@
+﻿@if (!string.IsNullOrEmpty(@imagenBase64))
+{
+    <img class="img-fluid" src="data:image/png;base64, @imagenBase64" style="width:20vw;height:50vh" />
+}
+
+@code {
+
+    string imagenBase64;
+    async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        var imagen = e.File;
+
+        var arrbytes = new Byte[imagen.Size];
+        await imagen.OpenReadStream().ReadAsync(arrbytes);
+        imagenBase64 = Convert.ToBase64String(arrbytes);
+        cliente.Foto = imagenBase64;
+
+    }
+}

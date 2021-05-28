@@ -40,6 +40,14 @@ namespace AplicacionDePrestamos.Client.Repositorios
             }
         }
 
+        public async Task<HttpResponseWrapper<object>> Put<T>(string url, T enviar)
+        {
+            var enviarJSON = JsonSerializer.Serialize(enviar);
+            var enviarContent = new StringContent(enviarJSON, Encoding.UTF8, "application/json");
+            var responseHttp = await httpClient.PutAsync(url, enviarContent);
+            return new HttpResponseWrapper<object>(null, !responseHttp.IsSuccessStatusCode, responseHttp);
+        }
+
         private async Task<T> DeserializarRespuesta<T>(HttpResponseMessage httpResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             var resposeString = await httpResponse.Content.ReadAsStringAsync();

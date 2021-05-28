@@ -2,53 +2,22 @@
 @inject NavigationManager navigationManager
 @page "/cliente/crearcliente"
 <h3>FormularioCliente</h3>
+<div class="row">
+    <div class="col-6">
 
-<EditForm Model="cliente" OnValidSubmit="@CrearCliente">
-    <DataAnnotationsValidator />
-
-
-    <div class="form-group">
-        <label>Nombre</label>
-        <InputText class="form-control" @bind-Value="cliente.Nombre"></InputText>
-        <ValidationMessage For="()=>cliente.Nombre" />
+        <FormularioEditarCrear OnValidSubmit="@CrearCliente"></FormularioEditarCrear>
     </div>
-    <div class="form-group">
-        <label>Celular</label>
-        <InputText class="form-control" @bind-Value="cliente.Celular"></InputText>
-        <ValidationMessage For="()=>cliente.Celular" />
-    </div>
-    <div class="form-group">
-        <label>Dirección</label>
-        <InputText class="form-control" @bind-Value="cliente.Direccion"></InputText>
-        <ValidationMessage For="()=>cliente.Direccion" />
-    </div>
-    <div class="form-group">
-        <label>Foto</label>
-        <InputFile OnChange="@LoadFiles" class="form-control" @bind-Value="cliente.Foto"></InputFile>
-        <ValidationMessage For="()=>cliente.Foto" />
-    </div>
-    <button type="submit" class="btn btn-dark">Guardar</button>
+    <div class="col-6">
+       
 
-</EditForm>
-
-<div>
-    <img src="data:image/jpeg;base64, @imagenBase64" style="width:400px" />
+    </div>
 </div>
+
 
 @code {
 
     public Cliente cliente = new Cliente();
-    string imagenBase64;
-    async Task LoadFiles(InputFileChangeEventArgs e)
-    {
-        var imagen = e.File;
-
-        var arrbytes = new Byte[imagen.Size];
-        await imagen.OpenReadStream().ReadAsync(arrbytes);
-        imagenBase64 = Convert.ToBase64String(arrbytes);
-        
-    }
-
+   
     public async Task CrearCliente()
     {
         var httpResponse = await repositorio.Post("api/clientes", cliente);

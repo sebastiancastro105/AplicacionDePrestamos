@@ -1,3 +1,4 @@
+using AplicacionDePrestamos.Server.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,8 +24,11 @@ namespace AplicacionDePrestamos.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            /*services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=DESKTOP-1SFSM3D\\SQLEXPRESS;Database=BlazorPrestamos;uid=sa;password=123456;Trusted_Connection=false;MultipleActiveResultSets=true;"));*/
             
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=DESKTOP-1SFSM3D\\SQLEXPRESS;Database=BlazorPrestamos;uid=sa;password=123456;Trusted_Connection=false;MultipleActiveResultSets=true;"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=PC04\\TICAPECA;Database=BlazorPrestamos;uid=sa;password=3Y.pa$$w0rd;Trusted_Connection=false;MultipleActiveResultSets=false;"));
+            services.AddScoped<IAlmacenadorArchivos, AlmacenadorArchivosAzStorage>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
