@@ -16,12 +16,17 @@ else if (Clientes == null)
 }
 else
 {
-    @foreach (var item in Clientes)
-    {
+    <div class="row">
 
-        <TarjetaCliente cliente="item"></TarjetaCliente>
 
-    }
+        @foreach (var item in Clientes)
+        {
+
+
+            <TarjetaCliente cliente="item"></TarjetaCliente>
+
+        }
+    </div>  
 }
 
 

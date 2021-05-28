@@ -24,7 +24,7 @@ namespace AplicacionDePrestamos.Server
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=PC04\\TICAPECA;Database=BlazorPrestamos;uid=sa;password=3Y.pa$$w0rd;Trusted_Connection=false;MultipleActiveResultSets=true;"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=DESKTOP-1SFSM3D\\SQLEXPRESS;Database=BlazorPrestamos;uid=sa;password=123456;Trusted_Connection=false;MultipleActiveResultSets=true;"));
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
